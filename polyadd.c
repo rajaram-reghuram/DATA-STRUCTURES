@@ -6,14 +6,14 @@ struct Polynomial
         int coef;
         int expon;
     };
-    
+   
 struct Polynomial t[100];
 int avail = 0;
 
        //Add a new term to the polynomial
 void attach (int coefficient, int exponent)
 {
-            
+           
 if (avail >= 100)
     {
         printf("Too many terms in the polynomial");
@@ -38,6 +38,20 @@ int compare(int exp_a, int exp_b)
         return -1;
 }
 
+//Function to display
+void display(int start,int finish)
+{
+  int i;
+  for(i=start;i<finish;i++)
+  {
+      printf(" (%d X^%d) + ",t[i].coef,t[i].expon);
+     
+     
+  }
+  printf(" (%d X^%d)",t[i].coef,t[i].expon);
+ 
+
+}
 
 // Function to perform polynomial addition
 int polyadd (int starta, int finisha, int startb, int finishb, int startc, int finishc)
@@ -64,31 +78,26 @@ while(starta <= finisha && startb <=finishb)
         attach(t[startb].coef, t[startb].expon);
         startb++;
         break;
-        
+       
+       
     }
-    
+   
+}
      //To add the remaining terms of a(x)
     for(;starta<=finisha;starta++)
     attach(t[starta].coef,t[starta].expon);
     for(;startb<=finishb;startb++)
     attach(t[startb].coef,t[startb].expon);
     finishc = avail-1;
+    printf("\n\n Resultant Polynomial is :");
+    display(startc,finishc);    // to display the sum of polynomials
 
 
 }
 
-}
 
 
-void display(int start,int finish)
-{
-  int i;
-  for(i=start;i<=finish;i++)
-  {
-      printf(" (%d X^%d) +",t[i].coef,t[i].expon);
-  }
-printf(" (%d X^%d)",t[i].coef,t[i].expon);
-}
+
 int main()
 {
 
@@ -100,16 +109,16 @@ int main()
  scanf("%d",&numa);
  
  starta=avail;
- for(avail;avail<numa;avail++)
+ for(;avail<numa;avail++)
  {
  
     //entering values in coefficient of the polynomial terms
     printf("\nEnter the coeffient of term %d :",avail+1);
     scanf("%d",&t[avail].coef);
-    
+   
     printf("\nEnter the exponent of term %d :",avail+1);
     scanf("%d",&t[avail].expon);
-	
+
  }
  finisha=avail-1;
  
@@ -119,28 +128,28 @@ int main()
  scanf("%d",&numb);
  
  
- for(startb=avail;avail<startb+numb;avail++)
+ for(;avail<startb+numb;avail++)
     {
  
     //entering values in coefficient of the polynomial terms
     printf("\nEnter the coeffient of term %d :",avail - finisha);
     scanf("%d",&t[avail].coef);
-    
+   
     printf("\nEnter the exponent of term %d :",avail - finisha);
     scanf("%d",&t[avail].expon);
-	
+
     }
 finishb=avail-1;
 
 /*for printing the result*/
 startc=avail;
-
-finishc=polyadd(starta,finisha,startb,finishb,avail,avail);
-
 printf("\n\n Polynomial a(x) :");
 display(starta,finisha);      // to display the polynomial
 printf("\n\n Polynomial b(x) :");
 display(startb,finishb);
-printf("\n\n Resultant Polynomial is :");
-display(startc,finishc);    // to display the sum of polynomials
+
+finishc=polyadd(starta,finisha,startb,finishb,avail,avail);
+
+
+
 }
