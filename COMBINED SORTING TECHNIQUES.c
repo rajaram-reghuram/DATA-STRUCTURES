@@ -173,49 +173,7 @@ int mergesort(int list[100],int left,int right)
        
 }
 
-void heapify(int list[100], int size, int i) 
-{
-    
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-  
-    if (left < size && list[left] > list[largest])
-      largest = left;
-  
-    if (right < size && list[right] > list[largest])
-      largest = right;
-  
-    
-    if (largest != i) 
-    {
-        int temp;
-        temp = list[i];
-        list[i] = list[largest];
-        list[largest] = temp;
-        heapify(list, size, largest);
-    }
-  }
-  
 
-void heapsort(int list[100], int size)
-{
-    
-    for (int i = size / 2 - 1; i >= 0; i--)
-      heapify(list, size, i);
-  
-   
-    for (int i = size - 1; i >= 0; i--) 
-    {
-        int temp; 
-        
-      temp = list[0];
-      list[0] = list[i];
-      list[i] = temp;
-      
-      heapify(list, i, 0);
-    }
-  }
 
 int main()
 {
@@ -231,7 +189,7 @@ int main()
     printf("The elements in the array are ::: \t");
     for(int i=0;i<size;i++)
      {
-         printf("%d\t ",list[i]);
+         printf(" %d",list[i]);
      }
      
     printf("\n\n ************** SELECT SORTING TECHNIQUE ********************* \n\n ");
@@ -246,7 +204,7 @@ int main()
         
         printf("5.MERGE SORT \n");
         
-        printf("6.HEAP SORT \n");
+        
         
         printf("7.EXIT \n");
 
@@ -309,17 +267,7 @@ int main()
             
             break;
             
-            case 6:
-            heapsort(list,size);
-            printf("Sorted elements: using heap sort is :: ");
-            for(i=0;i<size;i++)
-            {
-                printf(" %d",list[i]);  
-            }    
-            
-            break;
-
-
+           
             case 7:
             
             exit(0);
